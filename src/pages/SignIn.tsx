@@ -18,9 +18,7 @@ function SignIn() {
    
   axios.get('https://667b1a30bd627f0dcc91b421.mockapi.io/Users/allUsers').then((res)=>{
       let findUser = res.data.find((user:userInfo) => user.username === data.userName && user.password === data.password)
-      
-      console.log(findUser)
-      
+            
       findUser?.id && localStorage.setItem("userID", findUser.id) 
       localStorage.getItem("userID")? navigate('/'): null
 

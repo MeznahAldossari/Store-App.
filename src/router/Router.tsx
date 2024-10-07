@@ -7,12 +7,14 @@ import Signup from "../pages/Signup";
 import SignIn from "../pages/SignIn";
 import Products from "../components/Products";
 import Cart from "../pages/Cart";
+import ErrorPage from "../pages/ErrorPage";
 
 function Router() {
     const router = createBrowserRouter([
         {
           path: "/",
           element: <Home/>,
+          errorElement: <ErrorPage/>
         },
         {
           path: "/signup",

@@ -6,7 +6,7 @@ import Footer from '../components/Footer'
 function Home() {
   return (
     <>
-      <Nav/>
+      <Nav cartTotal = {0}/>
       <Hero />
       <Categories/>
       <Footer/> 
