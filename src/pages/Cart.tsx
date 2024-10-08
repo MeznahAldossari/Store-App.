@@ -1,18 +1,18 @@
-import {useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import Nav from "../components/Nav"
 import { cartInfo } from "../types/types"
 import axios from "axios"
 import deleteIcon from '../assets/deleteIcon.png'
 import Footer from "../components/Footer"
 import loaderIcon from '../assets/Loadericon.svg'
-
+import { CartContext } from "../context/Contextapi"
 
 function Cart() {
   const [itemDetails, setItemDetails] = useState<cartInfo[] | null>(null)
   const [total, setTotal] = useState<number>(0)
   const [qtyValue, setQtyValue] = useState<{[idItem:string]: string}>({})
   const [deleteBox, setDeleteBox] =useState<number>(0)
-  const [itemsLength, setItemLength] = useState<number>(0)
+  const {itemsLength, setItemLength} = useContext(CartContext)
   const [loader, setLoader] = useState<boolean>(false)
 
   useEffect(()=>{
@@ -79,7 +79,7 @@ function Cart() {
       axios.put(`https://667b1a30bd627f0dcc91b421.mockapi.io/Users/allUsers/${getUser}`,{
         cartItem:[...newList]
       }).then((_response)=>{
-        setItemLength(newList.length)
+        setItemLength(itemsLength - 1)
         setItemDetails(newList)
       })
     })
@@ -89,7 +89,7 @@ function Cart() {
     <>
       {loader ? (
           <main>
-            <Nav cartTotal={itemsLength}/>
+            <Nav />
             <section className="max-sm:flex max-sm:flex-col h-screen">
             <section className="grid grid-cols-3 gap-x-8 py-6  max-sm:flex-grow lg:gap-x-10  max-sm:flex max-sm:flex-col max-sm:py-12 max-sm:px-6 px-10 lg:px-12">
               <section className="flex justify-center lg:col-span-2 max-sm:col-span-1 col-span-2 h-auto max-h-[60vh]  max-sm:h-auto max-sm:max-h-[50vh]  overflow-y-auto lg:h-[75vh]">
@@ -170,5 +170,4 @@ function Cart() {
    
   )
 }
-
 export default Cart

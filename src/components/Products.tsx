@@ -1,5 +1,5 @@
 import axios from "axios"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { Link } from "react-router-dom"
 import { productsInfo } from "../types/types"
@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Footer from "./Footer"
 import LoadingIcon from '../assets/loadingIcon.svg'
 import loaderIcon from '../assets/Loadericon.svg'
+import { CartContext } from "../context/Contextapi"
 
 function Products() {
   const {id} = useParams<string>()
@@ -17,8 +18,8 @@ function Products() {
   const [size, setSize] = useState<string>("")
   const [qty, setQty] = useState<number>(1)
   const [adding, setAdding]= useState<boolean>(false)
-  const [itemsLength, setItemLength] = useState<number>(0)
   const [loader, setLoader] = useState<boolean>(false)
+  const {itemsLength, setItemLength} = useContext(CartContext)
   
   useEffect(()=>{
     getProduct() 
@@ -63,7 +64,7 @@ function Products() {
                   cartItem: arr
                 }).then(()=>{
                     setAdding(true)
-                    setItemLength(arr.length)
+                    setItemLength(itemsLength + 1)
                     toast.success('The Product has been Added Successfuly 🎉', {
                       position: "top-right",
                       autoClose: 3000,
@@ -110,7 +111,7 @@ function Products() {
                     cartItem: arr
                   }).then(()=>{
                         setAdding(true)
-                        setItemLength(arr.length)
+                        setItemLength(itemsLength + 1)
                         toast.success('The Product has been Added Successfuly 🎉', {
                           position: "top-right",
                           autoClose: 3500,
@@ -182,7 +183,7 @@ function Products() {
     <>
     {loader ?(
           <main>
-          <Nav cartTotal={itemsLength}/>
+          <Nav/>
         
           <ToastContainer />
           <section className="flex items-center flex-col h-screen">
