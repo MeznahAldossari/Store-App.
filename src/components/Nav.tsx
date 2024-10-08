@@ -1,8 +1,7 @@
 import logo from '../assets/logo.png'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import { useState, useEffect, useContext } from 'react'
+import { useContext } from 'react'
 import menu from '../assets/storeMenu.png'
 import { IoIosLogOut } from "react-icons/io";
 import { IoCartOutline } from "react-icons/io5";

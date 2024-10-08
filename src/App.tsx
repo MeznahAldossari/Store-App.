@@ -12,7 +12,7 @@ function App() {
     axios(`https://667b1a30bd627f0dcc91b421.mockapi.io/Users/allUsers/${getUser}`).then((res)=>{
         setItemLength(res.data.cartItem?.length)  
     })
-  },[itemsLength])
+  },[])
 
   return (
     <CartContext.Provider value={{itemsLength, setItemLength}}>
