@@ -79,7 +79,7 @@ function Cart() {
       axios.put(`https://667b1a30bd627f0dcc91b421.mockapi.io/Users/allUsers/${getUser}`,{
         cartItem:[...newList]
       }).then((_response)=>{
-        setItemLength(itemsLength - 1)
+        setItemLength(newList.length)
         setItemDetails(newList)
       })
     })
