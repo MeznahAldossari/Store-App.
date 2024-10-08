@@ -64,7 +64,7 @@ function Products() {
                   cartItem: arr
                 }).then(()=>{
                     setAdding(true)
-                    setItemLength(itemsLength + 1)
+                    setItemLength(arr.length)
                     toast.success('The Product has been Added Successfuly 🎉', {
                       position: "top-right",
                       autoClose: 3000,
@@ -111,7 +111,7 @@ function Products() {
                     cartItem: arr
                   }).then(()=>{
                         setAdding(true)
-                        setItemLength(itemsLength + 1)
+                        setItemLength(arr.length)
                         toast.success('The Product has been Added Successfuly 🎉', {
                           position: "top-right",
                           autoClose: 3500,
