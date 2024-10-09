@@ -1,35 +1,24 @@
 import logo from '../assets/logo.png'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
-import { useContext } from 'react'
 import menu from '../assets/storeMenu.png'
 import { IoIosLogOut } from "react-icons/io";
 import { IoCartOutline } from "react-icons/io5";
-import { CartContext } from "../context/Contextapi"
-
-
+import { useCartState } from "../store/Cartstore"
+import { useEffect } from 'react';
+import axios from 'axios';
 function Nav() {
-  const {itemsLength} = useContext(CartContext)
   const getUser = localStorage.getItem("userID")
   const navigate = useNavigate()
-  // const [totals, setTotals] =useState<number>(0)
-  
-  // useEffect(()=>{
+  const itemLength = useCartState((state)=> state.itemLength)
+  const updateLength = useCartState((state)=> state.updateLength)
 
-    
-
-  // }, [itemsLength,getUser])
-
-  // const getAll_products = ():void=>{
-  //   getUser && axios.get(`https://667b1a30bd627f0dcc91b421.mockapi.io/Users/allUsers/${getUser}`).then(response =>{
-  //         setTotals(response.data.cartItem?.length)
-          
-
-
-  // })
-    
-  // }
-
+  useEffect(()=>{
+    const getUser = localStorage.getItem("userID")
+      axios(`https://667b1a30bd627f0dcc91b421.mockapi.io/Users/allUsers/${getUser}`).then((res)=>{
+        updateLength(res.data.cartItem?.length)  
+      })
+  },[])
   const logoutUser = ()=>{
     localStorage.removeItem("userID")
     navigate("/")
@@ -123,7 +112,7 @@ function Nav() {
        
       
       <li className='relative hover:shadow-md  '>
-        <p className='rounded-full  absolute top-[-30%] left-[-20%] px-1 h-auto w-auto bg-red-500 text-[0.5em] text-center text-white'>{itemsLength}</p>
+        <p className='rounded-full  absolute top-[-30%] left-[-20%] px-1 h-auto w-auto bg-red-500 text-[0.5em] text-center text-white'>{itemLength}</p>
         <Link to='/cart'>
             {/* <img src={cartLogo} className='lg:h-auto max-md:w-[3vh] lg:w-[3vw] max-sm:max-h-[2.5vh]  h-[3vh] max-sm:w-[12vw]'></img> */}
 

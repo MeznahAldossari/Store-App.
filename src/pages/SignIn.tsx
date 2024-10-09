@@ -36,7 +36,7 @@ function SignIn() {
               <section className='w-full flex flex-col justify-center items-center'>
                   <input type='text' placeholder='Username' className='max-sm:my-2 border-2 max-sm:w-[75vw] rounded-md border-[#e0dfdf] mt-4  py-1 w-[50vw] px-1 lg:w-[35vw] lg:py-[0.4rem]'  {...register("userName")}></input>
                   <span className='text-red-600 text-[0.9em] max-sm:w-[75vw] w-[50vw] lg:w-[35vw]'>{errors.userName?.message}</span>
-                  <input type='passwoord' placeholder='Password' className='max-sm:my-2  border-2 max-sm:w-[75vw] rounded-md border-[#e0dfdf] mt-4  w-[50vw] py-1 px-1 lg:w-[35vw] lg:py-[0.4rem]'  {...register("password")}></input>
+                  <input type='password' placeholder='Password' className='max-sm:my-2  border-2 max-sm:w-[75vw] rounded-md border-[#e0dfdf] mt-4  w-[50vw] py-1 px-1 lg:w-[35vw] lg:py-[0.4rem]'  {...register("password")}></input>
                   <span className='text-red-600 text-[0.9em] max-sm:w-[75vw] lg:w-[35vw] w-[50vw]'>{errors.password?.message}</span>
 
                   <footer className='flex flex-col gap-y-6 max-sm:mt-2 max-sm:w-[75vw] mt-4 lg:w-[35vw] lg:mt-8 w-[50vw]'>

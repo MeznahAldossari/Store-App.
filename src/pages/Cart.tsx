@@ -5,15 +5,17 @@ import axios from "axios"
 import deleteIcon from '../assets/deleteIcon.png'
 import Footer from "../components/Footer"
 import loaderIcon from '../assets/Loadericon.svg'
-import { CartContext } from "../context/Contextapi"
+import { useCartState } from "../store/Cartstore"
+
 
 function Cart() {
   const [itemDetails, setItemDetails] = useState<cartInfo[] | null>(null)
   const [total, setTotal] = useState<number>(0)
   const [qtyValue, setQtyValue] = useState<{[idItem:string]: string}>({})
   const [deleteBox, setDeleteBox] =useState<number>(0)
-  const {itemsLength, setItemLength} = useContext(CartContext)
   const [loader, setLoader] = useState<boolean>(false)
+  const updateLength = useCartState((state)=> state.updateLength)
+
 
   useEffect(()=>{
     getCartItems()
@@ -79,7 +81,7 @@ function Cart() {
       axios.put(`https://667b1a30bd627f0dcc91b421.mockapi.io/Users/allUsers/${getUser}`,{
         cartItem:[...newList]
       }).then((_response)=>{
-        setItemLength(newList.length)
+        updateLength(newList.length)
         setItemDetails(newList)
       })
     })

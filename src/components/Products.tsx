@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Footer from "./Footer"
 import LoadingIcon from '../assets/loadingIcon.svg'
 import loaderIcon from '../assets/Loadericon.svg'
-import { CartContext } from "../context/Contextapi"
+import { useCartState } from "../store/Cartstore"
 
 function Products() {
   const {id} = useParams<string>()
@@ -19,8 +19,10 @@ function Products() {
   const [qty, setQty] = useState<number>(1)
   const [adding, setAdding]= useState<boolean>(false)
   const [loader, setLoader] = useState<boolean>(false)
-  const {itemsLength, setItemLength} = useContext(CartContext)
-  
+  const updateLength = useCartState((state)=> state.updateLength)
+
+
+
   useEffect(()=>{
     getProduct() 
   },[])
@@ -64,7 +66,7 @@ function Products() {
                   cartItem: arr
                 }).then(()=>{
                     setAdding(true)
-                    setItemLength(arr.length)
+                    updateLength(arr.length)
                     toast.success('The Product has been Added Successfuly 🎉', {
                       position: "top-right",
                       autoClose: 3000,
@@ -111,7 +113,7 @@ function Products() {
                     cartItem: arr
                   }).then(()=>{
                         setAdding(true)
-                        setItemLength(arr.length)
+                        updateLength(arr.length)
                         toast.success('The Product has been Added Successfuly 🎉', {
                           position: "top-right",
                           autoClose: 3500,
