@@ -132,5 +132,5 @@ class Http {
   }
 }
 
-const http = new Http(import.meta.env.API_BASE_URL);
+const http = new Http("https://667b1a30bd627f0dcc91b421.mockapi.io");
 export default http;
