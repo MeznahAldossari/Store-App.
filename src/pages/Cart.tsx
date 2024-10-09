@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react"
+import {useEffect, useState } from "react"
 import Nav from "../components/Nav"
 import { cartInfo } from "../types/types"
 import axios from "axios"
